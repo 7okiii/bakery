@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link rel="stylesheet" href="./stylesheet/style.css">
+    <script src="./js/angular.js"></script>
+    <script src="./js/angular.ani.js"></script>
+    <script src="./js/angular.route.js"></script>
+    <script src="./js/jquery.js"></script>
+    <title>bakery</title>
+</head>
+<body ng-app="naokiApp" ng-controller="naokiCtrl">
+    <div class="modalBox" ng-show="bread"> 
+        <div class="modal-content">
+            <span class="close" ng-click="hideItem()">&times;</span>
+            <div class="modal-left">
+                <img src="./img/bread1.jpeg">
+            </div>
+            <div class="modal-right">
+                <div class="top">
+                    <p>Bread</p>
+                </div>
+                <div class="bottom">
+                    <div class="price">
+                        <p>Price</p>
+                        <p>1.00 $</p>
+                    </div>
+                    <div class="amount">
+                        <input type="number" ng-model="breadAmount" min="1" value="1" class="inp" id="breadInp">
+                        <button ng-click="addBread()" class="btn" id="bBtn">ADD TO BASKET</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modalBox" ng-show="cookie">
+        <div class="modal-content">
+            <span class="close" ng-click="hideItem()">&times;</span>
+            <div class="modal-left">
+                <img src="./img/cookie2.jpeg">
+            </div>
+            <div class="modal-right">
+                <div class="top">
+                    <p>Cookie</p>
+                </div>
+                <div class="bottom">
+                    <div class="price">
+                        <p>Price</p>
+                        <p>3.00 $</p>
+                    </div>
+                    <div class="amount">
+                        <input type="number" ng-model="cookieAmount" min="1" value="1" class="inp" id="cookieInp">
+                        <button ng-click="addCookie()" class="btn" id="cBtn">ADD TO BASKET</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modalBox" ng-show="doughnut">
+        <div class="modal-content">
+            <span class="close" ng-click="hideItem()">&times;</span>
+            <div class="modal-left">
+                <img src="./img/doughnut.png">
+            </div>
+            <div class="modal-right">
+                <div class="top">
+                    <p>Doughnut</p>
+                </div>
+                <div class="bottom">
+                    <div class="price">
+                        <p>Price</p>
+                        <p>5.00 $</p>
+                    </div>
+                    <div class="amount">
+                        <input type="number" ng-model="doughnutAmount" min="1" value="1" class="inp" id="doughnutInp">
+                        <button ng-click="addDoughnut()" class="btn" id="dobtn">ADD TO BASKET</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modalBox" ng-show="cake">
+        <div class="modal-content">
+            <span class="close" ng-click="hideItem()">&times;</span>
+            <div class="modal-left">
+                <img src="./img/chicolate cake.jpeg">
+            </div>
+            <div class="modal-right">
+                <div class="top">
+                    <p>Chocolate cake</p>
+                </div>
+                <div class="bottom">
+                    <div class="price">
+                        <p>Price</p>
+                        <p>10.00 $</p>
+                    </div>
+                    <div class="amount">
+                        <input type="number" ng-model="cakeAmount" min="1" value="1" class="inp" id="cakeInp">
+                        <button ng-click="addCake()" class="btn" id="cakeBtn">ADD TO BASKET</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modalBox" ng-show="muffin">
+        <div class="modal-content">
+            <span class="close" ng-click="hideItem()">&times;</span>
+            <div class="modal-left">
+                <img src="./img/muffin.jpeg">
+            </div>
+            <div class="modal-right">
+                <div class="top">
+                    <p>Muffin</p>
+                </div>
+                <div class="bottom">
+                    <div class="price">
+                        <p>Price</p>
+                        <p>8.00 $</p>
+                    </div>
+                    <div class="amount">
+                        <input type="number" ng-model="muffinAmount" min="1" value="1" class="inp" id="muffinInp">
+                        <button ng-click="addMuffin()" class="btn" id="mufBtn">ADD TO BASKET</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modalBox" ng-show="cherry">
+        <div class="modal-content">
+            <span class="close" ng-click="hideItem()">&times;</span>
+            <div class="modal-left">
+                <img src="./img/cherry.jpeg">
+            </div>
+            <div class="modal-right">
+                <div class="top">
+                    <p>Cherry pie</p>
+                </div>
+                <div class="bottom">
+                    <div class="price">
+                        <p>Price</p>
+                        <p>12.00 $</p>
+                    </div>
+                    <div class="amount">
+                        <input type="number" ng-model="cherryAmount" min="1" value="1" class="inp" id="cherryInp">
+                        <button ng-click="addCherry()" class="btn" id="cherryBtn">ADD TO BASKET</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-total" ng-show="total">
+        <div class="modal-content-total">
+            <span class="close" ng-click="hideTotal()">&times;</span>
+            <p ng-show="nothing">Nothing is in your basket</p>
+            <table id="table" ng-show="added">
+                <thead style="color: rgb(68, 42, 9);">
+                    <th>Product</th>
+                    <th>Preference</th>
+                    <th>Unit Price</th>
+                    <th>Amount</th>
+                    <th>Total</th>
+                </thead>
+                <tr ng-show="tbBread">
+                    <td colspan="1">Bread</td>
+                    <td></td>
+                    <td>1.00 $</td>
+                    <td>{{breadAmount}}</td>
+                    <td>{{breadAmount * 1}} .00 $</td>
+                </tr>
+                <tr ng-show="tbCookie">
+                    <td colspan="1">Cookie</td>
+                    <td></td>
+                    <td>3.00 $</td>
+                    <td>{{cookieAmount}}</td>
+                    <td>{{cookieAmount * 3}} .00 $</td>
+                </tr>
+                <tr ng-show="tbDoughnut">
+                    <td colspan="1">Doughnut</td>
+                    <td></td>
+                    <td>5.00 $</td>
+                    <td>{{doughnutAmount}}</td>
+                    <td>{{doughnutAmount * 5}} .00 $</td>
+                </tr>
+                <tr ng-show="tbCake">
+                    <td colspan="1">Chocolate cake</td>
+                    <td></td>
+                    <td>10.00 $</td>
+                    <td>{{cakeAmount}}</td>
+                    <td>{{cakeAmount * 10}} .00 $</td>
+                </tr>
+                <tr ng-show="tbMuffin">
+                    <td colspan="1">Muffin</td>
+                    <td></td>
+                    <td>8.00 $</td>
+                    <td>{{muffinAmount}}</td>
+                    <td>{{muffinAmount * 8}} .00 $</td>
+                </tr>
+                <tr ng-show="tbCherry">
+                    <td colspan="1">Cherry pie</td>
+                    <td></td>
+                    <td>12.00 $</td>
+                    <td>{{cherryAmount}}</td>
+                    <td>{{cherryAmount * 12}} .00 $</td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align: right;">Subtotal</td>
+                    <!-- <td>{{breadAmount * 1}} + {{cookieAmount * 3}} + {{doughnutAmount * 5}} + {{cakeAmount * 10}} + {{muffinAmount * 8}} + {{cherryAmount * 12}}</td>     -->
+                    <td>{{breadAmount * 1 + cookieAmount * 3 + doughnutAmount * 5 + cakeAmount * 10 + muffinAmount * 8 + cherryAmount * 12}} .00 $</td>
+                </tr>
+            </table>
+            <div class="btns">
+                <button ng-click="hideTotal()" id="continue">CONTINUE SHOPPING</button>
+                <a href="#form" id="finish" ng-click="hideTotal()">FINISH SHOPPING</a>
+            </div>
+        </div>
+    </div>
+    <header>
+        <h2>Bakery Order Form</h2>
+    </header>
+    <main>
+        <div class="form">
+            <div class="product">
+                <div class="producttop">
+                    <p><span class="orange">1.</span> Chose what to order.*</p>
+                </div>
+                <div class="productbtm row">
+                    <p ng-show="empty">No product in your basket</p>
+                    <p ng-show="tAmount">Total Amount: <span style="color: orange;">{{breadAmount * 1 + cookieAmount * 3 + doughnutAmount * 5 + cakeAmount * 10 + muffinAmount * 8 + cherryAmount * 12}} .00 $</span></p>
+                    <div class="basket" ng-click="showTotal()"><i class="fas fa-shopping-basket"></i></div>
+                    <span id="num">{{breadAmount + cookieAmount + doughnutAmount + cakeAmount + muffinAmount + cherryAmount}}</span>
+                </div>
+            </div>
+            <div class="total row">
+                <p>Listing 6 products</p>
+            </div>
+            <div class="items">
+                <div class="bread" ng-click="showItem()">
+                    <div class="breadtop">
+                        <div class="breadPop">
+                            <p><span style="color: orange;">Bread </span>has been added!</p>
+                        </div>
+                        <img src="./img/bread1.jpeg" alt="bread1">
+                    </div>
+                    <div class="breadbtm">
+                        <p>Bread</p>
+                        <p style="text-align: right;">Price: <span style="color: orange;">1.00 $</span></p>    
+                    </div>
+                </div>
+                <div class="cookie" ng-click="showCookie()">
+                    <div class="cookietop">
+                        <div class="cookiePop">
+                            <p><span style="color: orange;">Cookie </span>has been added!</p>
+                        </div>                           
+                        <img src="./img/cookie2.jpeg" alt="cookie">
+                    </div>
+                    <div class="cookiebtm">
+                        <p>Cookie</p>
+                        <p style="text-align: right;">Price: <span style="color: orange;">3.00 $</span></p>
+                    </div>
+                </div>
+                <div class="doughnut" ng-click="showDoughnut()">
+                    <div class="doughnuttop">
+                        <div class="doughnutPop">
+                            <p><span style="color: orange;">Doughnut </span>has been added!</p>
+                        </div>                           
+                        <img src="./img/doughnut.png" alt="doughnut">
+                    </div>
+                    <div class="doughnutbtm">
+                        <p>Doughnut</p>
+                        <p style="text-align: right;">Price: <span style="color: orange;">5.00 $</span></p>
+                    </div>
+                </div>
+                <div class="cake" ng-click="showCake()">
+                    <div class="caketop">
+                        <div class="cakePop">
+                            <p><span style="color: orange;">Chocolate cake </span>has been added!</p>
+                        </div>                           
+                        <img src="./img/chicolate cake.jpeg" alt="cake">
+                    </div>
+                    <div class="cakebtm">
+                        <p>Chocolate cake</p>
+                        <p style="text-align: right;">Price: <span style="color: orange;">10.00 $</span></p>
+                    </div>
+                </div>
+                <div class="muffin" ng-click="showMuffin()">
+                    <div class="muffintop">
+                        <div class="muffinPop">
+                            <p><span style="color: orange;">Muffin </span>has been added!</p>
+                        </div>                           
+                        <img src="./img/muffin.jpeg" alt="muffin">
+                    </div>
+                    <div class="muffinbtm">
+                        <p>Muffin</p>
+                        <p style="text-align: right;">Price: <span style="color: orange;">8.00 $</span></p>
+                    </div>
+                </div>
+                <div class="cherry" ng-click="showCherry()">
+                    <div class="cherrytop">
+                        <div class="cherryPop">
+                            <p><span style="color: orange;">Cherry pie </span>has been added!</p>
+                        </div>                           
+                        <img src="./img/cherry.jpeg" alt="muffin">
+                    </div>
+                    <div class="cherrybtm">
+                        <p>Cherry pie</p>
+                        <p style="text-align: right;">Price: <span style="color: orange;">12.00 $</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="fullname" id="form">
+                <div class="nametop">
+                    <p><span class="orange">2.</span> Full Name</p>
+                </div>
+                <div class="namebtm">
+                    <input type="text" placeholder="First Name" class="row2" ng-model="test">
+                    <input type="text" placeholder="Last Name" class="row2" ng-bind="test">
+                </div>
+            </div>
+            <div class="email">
+                <div class="emailtop">
+                    <p><span class="orange">3.</span> Email</p>
+                </div>
+                <div class="emailbtm">
+                    <input class="row" type="email">
+                </div>
+            </div>
+            <div class="tel">
+                <div class="teltop">
+                    <p><span class="orange">4.</span> Phone Number</p>
+                </div>
+                <div class="telbtm">
+                    <input class="row" type="tel">
+                </div>
+            </div>
+            <div class="address">
+                <div class="addresstop">
+                    <p><span class="orange">5.</span> What's your address?</p>
+                </div>
+                <div class="addressbtm">
+                    <input type="text" placeholder="Address" class="row">
+                    <input type="text" placeholder="Address Line 2" class="row">
+                    <input type="text" placeholder="City" class="row2">
+                    <input type="text" placeholder="Postal Code" class="row2">
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        var app = angular.module('naokiApp',['ngAnimate','ngRoute']);
+        // var app = angular.module('naokiApp',['ngAnimate'],['ngRoute']);
+        app.controller('naokiCtrl',function($scope){
+            //for bread
+            $scope.bread = false;
+            $scope.showItem = function() {
+                $scope.bread = true;
+            };
+            //for cookie
+            $scope.cookie = false;
+            $scope.showCookie = function() {
+                $scope.cookie = true;
+            };
+            //for doughnut
+            $scope.doughnut = false;
+            $scope.showDoughnut = function() {
+                $scope.doughnut = true;
+            };
+            //for cake
+            $scope.cake = false;
+            $scope.showCake = function() {
+                $scope.cake = true;
+            };
+            //for muffin
+            $scope.muffin = false;
+            $scope.showMuffin = function() {
+                $scope.muffin = true;
+            };
+            //for cherry
+            $scope.cherry = false;
+            $scope.showCherry = function() {
+                $scope.cherry = true;
+            };
+            // $scope.hide = true;
+            $scope.hideItem = function() {
+                $scope.bread = false;
+                $scope.cookie = false;
+                $scope.doughnut = false;
+                $scope.cake = false;
+                $scope.muffin = false;
+                $scope.cherry = false;
+            };
+            $scope.total = false;
+            $scope.showTotal = function() {
+                $scope.total = true;
+            };
+            $scope.hideTotal = function() {
+                $scope.total = false;
+            };
+            //add items in basket
+            //for bread
+            $scope.tbBread = false;
+            $scope.empty = true;
+            $scope.tAmount = false;
+            $scope.nothing = true;
+            $scope.added = false;
+            // $scope.breadAmount = 1;
+            $scope.addBread = function() {
+                $scope.tbBread = true;
+                $scope.bread = false;
+                $scope.empty = false;
+                $scope.tAmount = true;
+                $scope.nothing = false;
+                $scope.added = true;
+            };
+            //for cookie
+            $scope.tbCookie = false;
+            // $scope.cookieAmount = 1;
+            $scope.addCookie = function() {
+                $scope.tbCookie = true;
+                $scope.cookie = false;
+                $scope.empty = false;
+                $scope.tAmount = true;
+                $scope.nothing = false;
+                $scope.added = true;
+            };
+            //for doughnut
+            $scope.tbDoughnut = false;
+            // $scope.doughnutAmount = 1;
+            $scope.addDoughnut = function() {
+                $scope.tbDoughnut = true;
+                $scope.doughnut = false;
+                $scope.empty = false;
+                $scope.tAmount = true;
+                $scope.nothing = false;
+                $scope.added = true;
+            };
+            //for cake
+            $scope.tbCake = false;
+            // $scope.cakeAmount = 1;
+            $scope.addCake = function() {
+                $scope.tbCake = true;
+                $scope.cake = false;
+                $scope.empty = false;
+                $scope.tAmount = true;
+                $scope.nothing = false;
+                $scope.added = true;
+            };
+            //for muffin
+            $scope.tbMuffin = false;
+            // $scope.muffinAmount = 1;
+            $scope.addMuffin = function() {
+                $scope.tbMuffin = true;
+                $scope.muffin = false;
+                $scope.empty = false;
+                $scope.tAmount = true;
+                $scope.nothing = false;
+                $scope.added = true;
+            };
+            //for cherry
+            $scope.tbCherry = false;
+            // $scope.cherryAmount = 1;
+            $scope.addCherry = function() {
+                $scope.tbCherry = true;
+                $scope.cherry = false;
+                $scope.empty = false;
+                $scope.tAmount = true;
+                $scope.nothing = false;
+                $scope.added = true;
+            };
+            //default amount
+            $scope.breadAmount = 0;
+            $scope.cookieAmount = 0;
+            $scope.doughnutAmount = 0;
+            $scope.cakeAmount = 0;
+            $scope.muffinAmount = 0;
+            $scope.cherryAmount = 0;
+            //for total
+        });
+    </script>
+    <script src="./js/style.js"></script>
+</body>
+</html>
